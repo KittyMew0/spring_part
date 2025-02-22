@@ -1,0 +1,11 @@
+#spring.application.name=book_store
+
+spring:
+  datasource:
+    url: jbdc:postgresql://localhost:5432/mynewdb
+    username: myuser
+    password: mypassword
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
