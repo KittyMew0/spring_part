@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment Page</title>
+</head>
+<body>
+<h2>Select Payment Method</h2>
+<form action="/pay" method="post">
+    <label>Amount: </label>
+    <input type="number" name="amount" required>
+    <br><br>
+    <label>Choose Payment Method:</label>
+    <select name="method">
+        <option value="creditCard">Credit Card</option>
+        <option value="paypal">PayPal</option>
+        <option value="bankTransfer">Bank Transfer</option>
+    </select>
+    <br><br>
+    <button type="submit">Pay Now</button>
+</form>
+</body>
+</html>
