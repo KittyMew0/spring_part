@@ -1,19 +1,18 @@
 package com.example.sem4and3task.controller;
 
-//import ch.qos.logback.core.model.Model;
-import org.springframework.ui.Model;
 import com.example.sem4and3task.model.Product;
+import com.example.sem4and3task.payment.PaymentContext;
 import com.example.sem4and3task.service.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @AllArgsConstructor
 public class ProductController {
     private ProductService productService;
+    private final PaymentContext paymentContext;
 
     @GetMapping("/products")
     public String getProducts(Model model) {
@@ -26,5 +25,11 @@ public class ProductController {
         productService.addProduct(p);
         model.addAttribute("products", productService.getAllProducts());
         return "products";
+    }
+
+    @PostMapping("/pay")
+    @ResponseBody
+    public String makePayment(@RequestParam String method, @RequestParam double amount) {
+        return paymentContext.processPayment(method, amount);
     }
 }
